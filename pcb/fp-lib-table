@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name rfm69)(type KiCad)(uri /home/jonas/entwicklung/kicad-libraries/rfm69.pretty)(options "")(descr ""))
+  (lib (name battery)(type KiCad)(uri /home/jonas/entwicklung/kicad-libraries/battery.pretty)(options "")(descr ""))
+)
