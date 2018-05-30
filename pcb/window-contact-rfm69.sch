@@ -58,12 +58,12 @@ $EndComp
 $Comp
 L C C1
 U 1 1 5B016625
-P 2300 2550
-F 0 "C1" H 2325 2650 50  0000 L CNN
-F 1 "100nf" H 2325 2450 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 2338 2400 50  0001 C CNN
-F 3 "" H 2300 2550 50  0000 C CNN
-	1    2300 2550
+P 2050 5450
+F 0 "C1" H 2075 5550 50  0000 L CNN
+F 1 "100nf" H 2075 5350 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 2088 5300 50  0001 C CNN
+F 3 "" H 2050 5450 50  0000 C CNN
+	1    2050 5450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -71,8 +71,8 @@ L R R2
 U 1 1 5B01665D
 P 5100 3700
 F 0 "R2" V 5180 3700 50  0000 C CNN
-F 1 "10k" V 5100 3700 50  0000 C CNN
-F 2 "Resistors_SMD:R_0805_HandSoldering" V 5030 3700 50  0001 C CNN
+F 1 "10M" V 5100 3700 50  0000 C CNN
+F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 5030 3700 50  0001 C CNN
 F 3 "" H 5100 3700 50  0000 C CNN
 	1    5100 3700
 	1    0    0    -1  
@@ -88,33 +88,10 @@ F 3 "" H 4650 3100 50  0000 C CNN
 	1    4650 3100
 	0    1    1    0   
 $EndComp
-$Comp
-L CONN_01X04 P2
-U 1 1 5B01681F
-P 6250 3000
-F 0 "P2" H 6250 3250 50  0000 C CNN
-F 1 "BME280" V 6350 3000 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04" H 6250 3000 50  0001 C CNN
-F 3 "" H 6250 3000 50  0000 C CNN
-	1    6250 3000
-	1    0    0    -1  
-$EndComp
-Text GLabel 1050 1750 0    60   Input ~ 0
+Text GLabel 1900 1500 2    60   Input ~ 0
 GND
-Text GLabel 1050 1050 0    60   Input ~ 0
+Text GLabel 1900 1200 2    60   Input ~ 0
 VCC
-Wire Wire Line
-	1050 1050 1050 1200
-Wire Wire Line
-	1050 1500 1050 1750
-Text GLabel 5850 3150 0    60   Input ~ 0
-VCC
-Text GLabel 5600 3050 0    60   Input ~ 0
-GND
-Wire Wire Line
-	6050 3050 5600 3050
-Wire Wire Line
-	6050 3150 5850 3150
 Text GLabel 5550 3750 0    60   Input ~ 0
 VCC
 $Comp
@@ -148,33 +125,6 @@ $EndComp
 Wire Wire Line
 	5700 3750 5550 3750
 NoConn ~ 5700 3650
-Wire Wire Line
-	1050 1200 2150 1200
-Wire Wire Line
-	2150 1200 2150 2400
-Wire Wire Line
-	2150 2400 2450 2400
-Wire Wire Line
-	2450 2400 2450 1650
-Connection ~ 2300 2400
-Connection ~ 2450 2250
-Connection ~ 2450 1950
-Wire Wire Line
-	2300 2700 2300 3850
-Wire Wire Line
-	2300 3850 2450 3850
-Wire Wire Line
-	2450 3850 2450 3950
-Wire Wire Line
-	1050 1500 1950 1500
-Wire Wire Line
-	1950 1500 1950 2700
-Wire Wire Line
-	1950 2700 2300 2700
-Connection ~ 2300 2700
-Connection ~ 1050 1500
-Connection ~ 1050 1200
-Connection ~ 2450 3850
 $Comp
 L RFM69 RF1
 U 1 1 5B018194
@@ -267,16 +217,6 @@ Text GLabel 5100 3950 3    60   Input ~ 0
 GND
 Wire Wire Line
 	5100 3850 5100 3950
-Wire Wire Line
-	6050 2950 4500 2950
-Wire Wire Line
-	4500 2950 4500 3000
-Wire Wire Line
-	4500 3000 4350 3000
-Wire Wire Line
-	4350 2900 6050 2900
-Wire Wire Line
-	6050 2900 6050 2850
 NoConn ~ 4350 1650
 NoConn ~ 4350 1750
 NoConn ~ 4350 2250
@@ -291,4 +231,55 @@ NoConn ~ 4350 3650
 NoConn ~ 4350 3750
 NoConn ~ 4350 3850
 NoConn ~ 4350 3950
+$Comp
+L CP C2
+U 1 1 5B018A0C
+P 1650 1350
+F 0 "C2" H 1675 1450 50  0000 L CNN
+F 1 "10uF" H 1675 1250 50  0000 L CNN
+F 2 "Capacitors_SMD:c_elec_4x5.8" H 1688 1200 50  0001 C CNN
+F 3 "" H 1650 1350 50  0000 C CNN
+	1    1650 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1050 1500 1900 1500
+Connection ~ 1650 1500
+Wire Wire Line
+	1050 1200 1900 1200
+Connection ~ 1650 1200
+$Comp
+L ATMEGA328P-A IC?
+U 1 1 5B0ACB62
+P 3200 5550
+F 0 "IC?" H 2450 6800 50  0000 L BNN
+F 1 "ATMEGA328P-A" H 3600 4150 50  0000 L BNN
+F 2 "TQFP32" H 3200 5550 50  0000 C CIN
+F 3 "" H 3200 5550 50  0000 C CNN
+	1    3200 5550
+	1    0    0    -1  
+$EndComp
+Text GLabel 1900 4550 0    60   Input ~ 0
+VCC
+Text GLabel 1900 6650 0    60   Input ~ 0
+GND
+Wire Wire Line
+	2050 5300 2050 4550
+Wire Wire Line
+	1900 4550 2300 4550
+Wire Wire Line
+	2300 4450 2300 5050
+Connection ~ 2050 4550
+Connection ~ 2300 4550
+Connection ~ 2300 4750
+Wire Wire Line
+	2050 5600 2050 6650
+Wire Wire Line
+	1900 6650 2300 6650
+Wire Wire Line
+	2300 6750 2300 6550
+Connection ~ 2050 6650
+Connection ~ 2300 6650
+NoConn ~ 4350 2900
+NoConn ~ 4350 3000
 $EndSCHEMATC
