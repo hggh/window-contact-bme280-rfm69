@@ -362,4 +362,15 @@ Text Label 8500 4800 0    60   ~ 0
 SCK
 Text Label 8950 4900 0    60   ~ 0
 MOSI
+$Comp
+L Battery BT?
+U 1 1 5B1415D6
+P 5850 2250
+F 0 "BT?" H 5950 2350 50  0000 L CNN
+F 1 "Battery" H 5950 2250 50  0000 L CNN
+F 2 "" V 5850 2310 50  0000 C CNN
+F 3 "" V 5850 2310 50  0000 C CNN
+	1    5850 2250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
