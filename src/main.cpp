@@ -41,18 +41,25 @@ ISR(PCINT1_vect) {
 }
 
 short get_window_status() {
-	bool reed_status_1 = digitalRead(REED_CONTACT_1);
-	bool reed_status_2 = digitalRead(REED_CONTACT_2);
+	int reed_status_1 = digitalRead(REED_CONTACT_1);
+	int reed_status_2 = digitalRead(REED_CONTACT_2);
 
-	if (reed_status_1 == false and reed_status_2 == false) {
+#ifdef DEBUG
+		Serial.print("Reed Status 1: ");
+		Serial.println(reed_status_1);
+		Serial.print("Reed Status 2: ");
+		Serial.println(reed_status_2);
+#endif
+
+	if (reed_status_1 == LOW and reed_status_2 == LOW) {
 		return WINDOW_STATUS_CLOSED;
 	}
 
-	if (reed_status_1 == true and reed_status_2 == false) {
+	if (reed_status_1 == HIGH and reed_status_2 == LOW) {
 		return WINDOW_STATUS_OPENED;
 	}
 
-	if (reed_status_1 == false and reed_status_2 == true) {
+	if (reed_status_1 == LOW and reed_status_2 == HIGH) {
 		return WINDOW_STATUS_HALF_OPEN;
 	}
 
@@ -71,11 +78,11 @@ float read_battery_volatage() {
 	}
 	float battery_voltage = InternalReferenceVoltage / float (ADC + 0.5) * 1024.0;
 
-	if (DEBUG == 1) {
+#ifdef DEBUG
 		Serial.print("Voltage = ");
 		Serial.println(battery_voltage);
 		Serial.flush();
-	}
+#endif
 	ADCSRA &= ~(1 << 7);
 	power_adc_disable();
 	return battery_voltage;
@@ -94,9 +101,9 @@ void setup_pin_change_interrupt() {
 void disable_pin_change_interrupt() {
 	noInterrupts();
 
-	PCICR |= ~(1 << PCIE1);
-	PCMSK1 |= ~(1<<PCINT8);
-	PCMSK1 |= ~(1<<PCINT9);
+	PCICR &= ~(1 << PCIE1);
+	PCMSK1 &= ~(1<<PCINT8);
+	PCMSK1 &= ~(1<<PCINT9);
 
 	interrupts();
 }
@@ -112,21 +119,20 @@ void send_status(short status) {
 	radio.sendWithRetry(GATEWAYID, buffer, strlen(buffer), 6);
 	radio.sleep();
 
-	if (DEBUG == 1) {
+#ifdef DEBUG
 		Serial.println(buffer);
 		Serial.flush();
-	}
+#endif
 }
 
 void setup() {
-	if (DEBUG == 1) {
+#ifdef DEBUG
 		Serial.begin(9600);
 		Serial.println("Starting window-contact-rfm69");
 		Serial.flush();
-	}
-	else {
+#else
 		power_usart0_disable();
-	}
+#endif
 	ADCSRA_status = ADCSRA;
 	ADCSRA &= ~(1 << 7);
 	power_adc_disable();
@@ -149,16 +155,7 @@ void loop() {
 	if (action_status == ACTION_STATUS_READ) {
 		disable_pin_change_interrupt();
 
-		if (DEBUG == 1) {
-			Serial.println("at action_status == ACTION_STATUS_READ");
-			Serial.flush();
-		}
-
 		Sleepy::loseSomeTime(3000);
-		if (DEBUG == 1) {
-			Serial.println("at action_status == ACTION_STATUS_READ - after sleep");
-			Serial.flush();
-		}
 
 		window_status = get_window_status();
 		send_status(window_status);
@@ -166,10 +163,10 @@ void loop() {
 		action_status = ACTION_STATUS_SLEEP;
 	}
 	if (action_status == ACTION_STATUS_SLEEP) {
-		if (DEBUG == 1) {
+#ifdef DEBUG
 			Serial.println("at action_status == ACTION_STATUS_SLEEP");
 			Serial.flush();
-		}
+#endif
 		setup_pin_change_interrupt();
 		Sleepy::powerDown();
 	}
