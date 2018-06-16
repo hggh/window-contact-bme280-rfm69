@@ -3,20 +3,13 @@
 #include <RFM69.h>
 #include <JeeLib.h>
 
+#include "config.h"
 
 // reed contact 1 = RE1/P3 = window fully open
 #define REED_CONTACT_1 A1
 
 // reed contact 2 = RE2/P5 = window half open
 #define REED_CONTACT_2 A0
-
-#define NODEID        101
-#define NETWORKID     100
-#define GATEWAYID     1
-#define FREQUENCY     RF69_433MHZ
-#define ENCRYPTKEY    "sampleEncryptKey"
-#define ACK_TIME      15
-#define DEBUG 1
 
 #define WINDOW_STATUS_UNDEFINED 0
 #define WINDOW_STATUS_CLOSED    1
