@@ -44,15 +44,15 @@ short get_window_status() {
 		Serial.println(reed_status_2);
 #endif
 
-	if (reed_status_1 == LOW and reed_status_2 == LOW) {
+	if (reed_status_1 == HIGH and reed_status_2 == HIGH) {
 		return WINDOW_STATUS_CLOSED;
 	}
 
-	if (reed_status_1 == HIGH and reed_status_2 == LOW) {
+	if (reed_status_1 == LOW and reed_status_2 == LOW) {
 		return WINDOW_STATUS_OPENED;
 	}
 
-	if (reed_status_1 == LOW and reed_status_2 == HIGH) {
+	if (reed_status_1 == HIGH and reed_status_2 == LOW) {
 		return WINDOW_STATUS_HALF_OPEN;
 	}
 
@@ -102,13 +102,13 @@ void disable_pin_change_interrupt() {
 }
 
 void send_status(short status) {
-	char buffer[19];
-	float volt = (double)read_battery_volatage();
+	char buffer[30] = "";
+	double volt = (double)read_battery_volatage();
 
 	char volt_str[10];
 	dtostrf(volt, 3,2, volt_str);
 
-	sprintf(buffer, "WindowStatus:%d:%s", status, volt_str);
+	sprintf(buffer, "%d;WinStatus;%d;%s", NODEID, status, volt_str);
 	radio.sendWithRetry(GATEWAYID, buffer, strlen(buffer), 6);
 	radio.sleep();
 
@@ -148,7 +148,7 @@ void loop() {
 	if (action_status == ACTION_STATUS_READ) {
 		disable_pin_change_interrupt();
 
-		Sleepy::loseSomeTime(3000);
+		Sleepy::loseSomeTime(1500);
 
 		window_status = get_window_status();
 		send_status(window_status);
