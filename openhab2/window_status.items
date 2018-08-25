@@ -1,0 +1,7 @@
+String Window_Contact_1_String "[%s]" { serial="/dev/ttyUSB0,REGEX(53;WinStatus;(.*))" }
+
+Number Window_Contact_1_Status "Window Status [MAP(window_status.map):%s]" <window>
+Number Window_Contact_1_Battery "Batteriespannung [%.1f V]" <batterylevel>
+
+DateTime Window_Contact_1_LastUpdate "letzte aktualisierung [%1$tH:%1$tM]" <time>
+

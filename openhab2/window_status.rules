@@ -1,0 +1,15 @@
+rule "set Window Status 1 from STR"
+when
+	Item Window_Contact_1_String received update
+then
+	var status = transform("REGEX", "^(\\d*);.*", Window_Contact_1_String.state.toString)
+
+	var voltage = transform("REGEX", "^\\d*;(\\d*.\\d*).*", Window_Contact_1_String.state.toString)
+
+	Window_Contact_1_Status.postUpdate(status)
+	Window_Contact_1_Battery.postUpdate(voltage)
+
+	Window_Contact_1_LastUpdate.postUpdate(new DateTimeType())
+
+end
+
