@@ -29,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:rfm69
+LIBS:Switch
 LIBS:window-contact-rfm69-cache
 EELAYER 25 0
 EELAYER END
@@ -72,7 +73,7 @@ U 1 1 5B01665D
 P 5250 7200
 F 0 "R2" V 5330 7200 50  0000 C CNN
 F 1 "10M" V 5250 7200 50  0000 C CNN
-F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 5180 7200 50  0001 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 5180 7200 50  0001 C CNN
 F 3 "" H 5250 7200 50  0000 C CNN
 	1    5250 7200
 	1    0    0    -1  
@@ -433,7 +434,7 @@ U 1 1 5B1981B6
 P 6000 6800
 F 0 "R3" V 6080 6800 50  0000 C CNN
 F 1 "10M" V 6000 6800 50  0000 C CNN
-F 2 "Resistors_ThroughHole:Resistor_Horizontal_RM10mm" V 5930 6800 50  0001 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 5930 6800 50  0001 C CNN
 F 3 "" H 6000 6800 50  0000 C CNN
 	1    6000 6800
 	1    0    0    -1  
@@ -471,7 +472,6 @@ NoConn ~ 4200 5500
 NoConn ~ 4200 5600
 NoConn ~ 4200 5700
 NoConn ~ 4200 5800
-NoConn ~ 4200 6350
 NoConn ~ 4200 6450
 NoConn ~ 4200 6550
 NoConn ~ 4200 6650
@@ -499,4 +499,37 @@ Wire Wire Line
 	4350 6150 4350 6200
 Wire Wire Line
 	4350 6200 4750 6200
+$Comp
+L R R?
+U 1 1 5B891AA9
+P 6750 6500
+F 0 "R?" V 6830 6500 50  0000 C CNN
+F 1 "10M" V 6750 6500 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 6680 6500 50  0001 C CNN
+F 3 "" H 6750 6500 50  0000 C CNN
+	1    6750 6500
+	1    0    0    -1  
+$EndComp
+Text GLabel 6750 6800 3    60   Input ~ 0
+GND
+Wire Wire Line
+	4200 6350 6950 6350
+Wire Wire Line
+	6750 6650 6750 6800
+$Comp
+L SW_Push SW?
+U 1 1 5B8920C1
+P 7150 6350
+F 0 "SW?" H 7200 6450 50  0000 L CNN
+F 1 "LED ON" H 7150 6290 50  0000 C CNN
+F 2 "" H 7150 6550 50  0001 C CNN
+F 3 "" H 7150 6550 50  0001 C CNN
+	1    7150 6350
+	1    0    0    -1  
+$EndComp
+Text GLabel 7550 6350 2    60   Input ~ 0
+VCC
+Wire Wire Line
+	7350 6350 7550 6350
+Connection ~ 6750 6350
 $EndSCHEMATC

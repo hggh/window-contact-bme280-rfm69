@@ -1,4 +1,4 @@
-update=Sun May 20 15:22:47 2018
+update=Fri Aug 31 11:36:31 2018
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,3 +59,4 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=rfm69
+LibName31=/home/jonas/kicad-symbols/Switch

@@ -29,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:rfm69
+LIBS:Switch
 LIBS:window-contact-rfm69-cache
 EELAYER 25 0
 EELAYER END
@@ -465,13 +466,10 @@ Wire Wire Line
 	5250 6900 5250 7050
 NoConn ~ 4200 4450
 NoConn ~ 4200 4550
-NoConn ~ 4200 5050
-NoConn ~ 4200 5150
 NoConn ~ 4200 5500
 NoConn ~ 4200 5600
 NoConn ~ 4200 5700
 NoConn ~ 4200 5800
-NoConn ~ 4200 6350
 NoConn ~ 4200 6450
 NoConn ~ 4200 6550
 NoConn ~ 4200 6650
@@ -499,4 +497,89 @@ Wire Wire Line
 	4350 6150 4350 6200
 Wire Wire Line
 	4350 6200 4750 6200
+$Comp
+L R R?
+U 1 1 5B891AA9
+P 6750 6500
+F 0 "R?" V 6830 6500 50  0000 C CNN
+F 1 "10M" V 6750 6500 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 6680 6500 50  0001 C CNN
+F 3 "" H 6750 6500 50  0000 C CNN
+	1    6750 6500
+	1    0    0    -1  
+$EndComp
+Text GLabel 6750 6800 3    60   Input ~ 0
+GND
+Wire Wire Line
+	4200 6350 6950 6350
+Wire Wire Line
+	6750 6650 6750 6800
+$Comp
+L SW_Push SW?
+U 1 1 5B8920C1
+P 7150 6350
+F 0 "SW?" H 7200 6450 50  0000 L CNN
+F 1 "LED ON" H 7150 6290 50  0000 C CNN
+F 2 "" H 7150 6550 50  0001 C CNN
+F 3 "" H 7150 6550 50  0001 C CNN
+	1    7150 6350
+	1    0    0    -1  
+$EndComp
+Text GLabel 7550 6350 2    60   Input ~ 0
+VCC
+Wire Wire Line
+	7350 6350 7550 6350
+Connection ~ 6750 6350
+$Comp
+L R R?
+U 1 1 5B892B3A
+P 5450 4200
+F 0 "R?" V 5530 4200 50  0000 C CNN
+F 1 "R" V 5450 4200 50  0000 C CNN
+F 2 "" V 5380 4200 50  0000 C CNN
+F 3 "" H 5450 4200 50  0000 C CNN
+	1    5450 4200
+	1    0    0    -1  
+$EndComp
+Text GLabel 5450 3850 1    60   Input ~ 0
+GND
+Wire Wire Line
+	5450 3850 5450 4050
+$Comp
+L LED_Small D?
+U 1 1 5B892EF0
+P 5250 5000
+F 0 "D?" H 5200 5125 50  0000 L CNN
+F 1 "RE1" H 5075 4900 50  0000 L CNN
+F 2 "" V 5250 5000 50  0000 C CNN
+F 3 "" V 5250 5000 50  0000 C CNN
+	1    5250 5000
+	-1   0    0    1   
+$EndComp
+$Comp
+L LED_Small D?
+U 1 1 5B8932F8
+P 4700 5150
+F 0 "D?" H 4650 5275 50  0000 L CNN
+F 1 "RE2" H 4525 5050 50  0000 L CNN
+F 2 "" V 4700 5150 50  0000 C CNN
+F 3 "" V 4700 5150 50  0000 C CNN
+	1    4700 5150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5150 5000 4400 5000
+Wire Wire Line
+	4400 5000 4400 5050
+Wire Wire Line
+	4400 5050 4200 5050
+Wire Wire Line
+	4200 5150 4600 5150
+Wire Wire Line
+	5450 5150 4800 5150
+Connection ~ 5450 5000
+Wire Wire Line
+	5450 4350 5450 5150
+Wire Wire Line
+	5450 5000 5350 5000
 $EndSCHEMATC
