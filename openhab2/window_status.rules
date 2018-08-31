@@ -10,6 +10,4 @@ then
 	Window_Contact_1_Battery.postUpdate(voltage)
 
 	Window_Contact_1_LastUpdate.postUpdate(new DateTimeType())
-
 end
-
