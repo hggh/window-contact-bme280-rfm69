@@ -44,15 +44,15 @@ short get_window_status() {
 		Serial.println(reed_status_2);
 #endif
 
-	if (reed_status_1 == HIGH and reed_status_2 == HIGH) {
+	if (reed_status_1 == LOW and reed_status_2 == LOW) {
 		return WINDOW_STATUS_CLOSED;
 	}
 
-	if (reed_status_1 == LOW and reed_status_2 == LOW) {
+	if (reed_status_1 == HIGH and reed_status_2 == LOW) {
 		return WINDOW_STATUS_OPENED;
 	}
 
-	if (reed_status_1 == HIGH and reed_status_2 == LOW) {
+	if (reed_status_1 == LOW and reed_status_2 == HIGH) {
 		return WINDOW_STATUS_HALF_OPEN;
 	}
 
