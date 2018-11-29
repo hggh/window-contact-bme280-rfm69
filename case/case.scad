@@ -7,18 +7,22 @@ translate([10, 50, 0]) {
 	inlay();
 }
 
-union() {
-	case();
-	translate([68, -4.5, 0]) {
-		difference() {
-			cube([40, 41, 6]);
-			translate([1, 2, 1]) {
-				cube([38, 37, 10]);
+
+difference() {
+	union() {
+		case();
+		translate([68, -4.5, 0]) {
+			difference() {
+				cube([40, 41, 6]);
+				translate([1, 2, 1]) {
+					cube([38, 37, 10]);
+				}
 			}
-			translate([0, 4.5, 1]) {
-				cube([1, 32, 5]);
-			}
+			
 		}
+	}
+	translate([67, 1, 1]) {
+		cube([2, 30, 1]);
 	}
 }
 
