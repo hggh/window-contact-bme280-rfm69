@@ -1,54 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Switch1_SW_Push
+# ATMEGA328P-A
 #
-DEF Switch1_SW_Push SW 0 40 N N 1 F N
-F0 "SW" 50 100 50 H V L CNN
-F1 "Switch1_SW_Push" 0 -60 50 H V C CNN
-F2 "" 0 200 50 H I C CNN
-F3 "" 0 200 50 H I C CNN
-DRAW
-C -80 0 20 0 1 0 N
-C 80 0 20 0 1 0 N
-P 2 0 1 0 0 50 0 120 N
-P 2 0 1 0 100 50 -100 50 N
-X 1 1 -200 0 100 R 50 50 0 1 P
-X 2 2 200 0 100 L 50 50 0 1 P
-ENDDRAW
-ENDDEF
-#
-# rfm69_RFM69
-#
-DEF rfm69_RFM69 RF 0 40 Y Y 1 F N
-F0 "RF" 300 550 60 H V C CNN
-F1 "rfm69_RFM69" -50 550 60 H V C CNN
-F2 "" 150 50 60 V V C CNN
-F3 "" 150 50 60 V V C CNN
-DRAW
-S -200 500 400 -350 0 1 0 N
-X ANT 1 600 -300 200 L 50 50 1 1 I
-X DIO2 10 -400 100 200 R 50 50 1 1 I
-X DIO1 11 -400 0 200 R 50 50 1 1 I
-X DIO5 12 -400 -100 200 R 50 50 1 1 I
-X RST 13 -400 -200 200 R 50 50 1 1 I
-X GND 14 -400 -300 200 R 50 50 1 1 I
-X VCC_3.3V 2 600 -200 200 L 50 50 1 1 I
-X GND 3 600 -100 200 L 50 50 1 1 I
-X DIO3 4 600 0 200 L 50 50 1 1 I
-X MOSI 5 600 100 200 L 50 50 1 1 I
-X SCK 6 600 200 200 L 50 50 1 1 I
-X NSS 7 600 300 200 L 50 50 1 1 I
-X MISO 8 -400 300 200 R 50 50 1 1 I
-X DIO0 9 -400 200 200 R 50 50 1 1 I
-ENDDRAW
-ENDDEF
-#
-# window-contact-rfm69-rescue_ATMEGA328P-A
-#
-DEF window-contact-rfm69-rescue_ATMEGA328P-A IC 0 40 Y Y 1 F N
+DEF ATMEGA328P-A IC 0 40 Y Y 1 F N
 F0 "IC" -750 1250 50 H V L BNN
-F1 "window-contact-rfm69-rescue_ATMEGA328P-A" 400 -1400 50 H V L BNN
+F1 "ATMEGA328P-A" 400 -1400 50 H V L BNN
 F2 "TQFP32" 0 0 50 H V C CIN
 F3 "" 0 0 50 H V C CNN
 DRAW
@@ -88,11 +45,11 @@ X (PCINT21/OC0B/T1)PD5 9 1000 -1000 150 L 40 40 1 1 B
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_Battery_Cell
+# Battery_Cell
 #
-DEF window-contact-rfm69-rescue_Battery_Cell BT 0 0 N N 1 F N
+DEF Battery_Cell BT 0 0 N N 1 F N
 F0 "BT" 100 100 50 H V L CNN
-F1 "window-contact-rfm69-rescue_Battery_Cell" 100 0 50 H V L CNN
+F1 "Battery_Cell" 100 0 50 H V L CNN
 F2 "" 0 60 50 V V C CNN
 F3 "" 0 60 50 V V C CNN
 DRAW
@@ -107,11 +64,11 @@ X - 2 0 -100 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_C
+# C
 #
-DEF window-contact-rfm69-rescue_C C 0 10 N Y 1 F N
+DEF C C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
-F1 "window-contact-rfm69-rescue_C" 25 -100 50 H V L CNN
+F1 "C" 25 -100 50 H V L CNN
 F2 "" 38 -150 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -129,11 +86,11 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_CONN_01X01
+# CONN_01X01
 #
-DEF window-contact-rfm69-rescue_CONN_01X01 P 0 40 Y N 1 F N
+DEF CONN_01X01 P 0 40 Y N 1 F N
 F0 "P" 0 100 50 H V C CNN
-F1 "window-contact-rfm69-rescue_CONN_01X01" 100 0 50 V V C CNN
+F1 "CONN_01X01" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -149,11 +106,11 @@ X P1 1 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_CONN_01X02
+# CONN_01X02
 #
-DEF window-contact-rfm69-rescue_CONN_01X02 P 0 40 Y N 1 F N
+DEF CONN_01X02 P 0 40 Y N 1 F N
 F0 "P" 0 150 50 H V C CNN
-F1 "window-contact-rfm69-rescue_CONN_01X02" 100 0 50 V V C CNN
+F1 "CONN_01X02" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -171,11 +128,11 @@ X P2 2 -200 -50 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_CONN_01X06
+# CONN_01X06
 #
-DEF window-contact-rfm69-rescue_CONN_01X06 P 0 40 Y N 1 F N
+DEF CONN_01X06 P 0 40 Y N 1 F N
 F0 "P" 0 350 50 H V C CNN
-F1 "window-contact-rfm69-rescue_CONN_01X06" 100 0 50 V V C CNN
+F1 "CONN_01X06" 100 0 50 V V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -201,11 +158,11 @@ X P6 6 -200 -250 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_CP
+# CP
 #
-DEF window-contact-rfm69-rescue_CP C 0 10 N Y 1 F N
+DEF CP C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
-F1 "window-contact-rfm69-rescue_CP" 25 -100 50 H V L CNN
+F1 "CP" 25 -100 50 H V L CNN
 F2 "" 38 -150 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST
@@ -230,11 +187,11 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_LED_Small
+# LED_Small
 #
-DEF window-contact-rfm69-rescue_LED_Small D 0 10 N N 1 F N
+DEF LED_Small D 0 10 N N 1 F N
 F0 "D" -50 125 50 H V L CNN
-F1 "window-contact-rfm69-rescue_LED_Small" -175 -100 50 H V L CNN
+F1 "LED_Small" -175 -100 50 H V L CNN
 F2 "" 0 0 50 V V C CNN
 F3 "" 0 0 50 V V C CNN
 $FPLIST
@@ -252,11 +209,11 @@ X A 2 100 0 70 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# window-contact-rfm69-rescue_R
+# R
 #
-DEF window-contact-rfm69-rescue_R R 0 0 N Y 1 F N
+DEF R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
-F1 "window-contact-rfm69-rescue_R" 0 0 50 V V C CNN
+F1 "R" 0 0 50 V V C CNN
 F2 "" -70 0 50 V V C CNN
 F3 "" 0 0 50 H V C CNN
 $FPLIST

@@ -1,37 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:rfm69
-LIBS:Switch
+EESchema Schematic File Version 4
 LIBS:window-contact-rfm69-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -46,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Battery_Cell BT1
+L window-contact-rfm69-rescue:Battery_Cell BT1
 U 1 1 5B016578
 P 1050 1400
 F 0 "BT1" H 1150 1500 50  0000 L CNN
@@ -57,7 +26,7 @@ F 3 "" V 1050 1460 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C3
+L window-contact-rfm69-rescue:C C3
 U 1 1 5B016625
 P 2100 5150
 F 0 "C3" H 2125 5250 50  0000 L CNN
@@ -68,7 +37,7 @@ F 3 "" H 2100 5150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R2
+L window-contact-rfm69-rescue:R R2
 U 1 1 5B01665D
 P 5250 7200
 F 0 "R2" V 5330 7200 50  0000 C CNN
@@ -79,7 +48,7 @@ F 3 "" H 5250 7200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L R R1
+L window-contact-rfm69-rescue:R R1
 U 1 1 5B0166FD
 P 4700 5900
 F 0 "R1" V 4780 5900 50  0000 C CNN
@@ -94,7 +63,7 @@ GND
 Text GLabel 1900 1200 2    60   Input ~ 0
 VCC
 $Comp
-L CP C1
+L window-contact-rfm69-rescue:CP C1
 U 1 1 5B018A0C
 P 1650 1350
 F 0 "C1" H 1675 1450 50  0000 L CNN
@@ -105,13 +74,13 @@ F 3 "" H 1650 1350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1050 1500 1900 1500
+	1050 1500 1650 1500
 Connection ~ 1650 1500
 Wire Wire Line
-	1050 1200 1900 1200
+	1050 1200 1650 1200
 Connection ~ 1650 1200
 $Comp
-L ATMEGA328P-A IC1
+L window-contact-rfm69-rescue:ATMEGA328P-A IC1
 U 1 1 5B0ACB62
 P 3200 5550
 F 0 "IC1" H 2450 6800 50  0000 L BNN
@@ -125,7 +94,7 @@ Text GLabel 1750 4500 0    60   Input ~ 0
 VCC
 NoConn ~ 2300 5050
 $Comp
-L C C2
+L window-contact-rfm69-rescue:C C2
 U 1 1 5B13F6B2
 P 2000 4650
 F 0 "C2" H 2025 4750 50  0000 L CNN
@@ -138,13 +107,13 @@ $EndComp
 Text GLabel 1800 5000 0    60   Input ~ 0
 VCC
 Wire Wire Line
-	1750 4500 2300 4500
+	1750 4500 2000 4500
 Wire Wire Line
-	2300 4450 2300 4550
+	2300 4450 2300 4500
 Connection ~ 2000 4500
 Connection ~ 2300 4500
 Wire Wire Line
-	2000 4800 2000 6900
+	2000 4800 2000 6650
 Wire Wire Line
 	2000 6650 2300 6650
 Wire Wire Line
@@ -156,12 +125,12 @@ Connection ~ 2000 6750
 Wire Wire Line
 	2300 5000 2300 4750
 Wire Wire Line
-	1800 5000 2300 5000
+	1800 5000 2100 5000
 Connection ~ 2100 5000
 Wire Wire Line
 	2100 5300 2100 6550
 Wire Wire Line
-	2100 6550 2300 6550
+	2100 6550 2200 6550
 Text GLabel 2200 6900 3    60   Input ~ 0
 GND
 Wire Wire Line
@@ -170,7 +139,7 @@ Connection ~ 2200 6550
 NoConn ~ 2300 5800
 NoConn ~ 2300 5900
 $Comp
-L R R6
+L window-contact-rfm69-rescue:R R6
 U 1 1 5B140033
 P 8800 5000
 F 0 "R6" V 8880 5000 50  0000 C CNN
@@ -181,7 +150,7 @@ F 3 "" H 8800 5000 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L RFM69 RF1
+L rfm69:RFM69 RF1
 U 1 1 5B1401F8
 P 7600 5100
 F 0 "RF1" H 7900 5650 60  0000 C CNN
@@ -196,7 +165,7 @@ VCC
 Wire Wire Line
 	5100 5900 4850 5900
 Wire Wire Line
-	4550 5900 4200 5900
+	4550 5900 4500 5900
 Text GLabel 8600 5300 2    60   Input ~ 0
 VCC
 Text GLabel 8950 5200 2    60   Input ~ 0
@@ -210,7 +179,7 @@ Wire Wire Line
 Wire Wire Line
 	8200 5200 8950 5200
 $Comp
-L CONN_01X01 P6
+L window-contact-rfm69-rescue:CONN_01X01 P6
 U 1 1 5B140A1B
 P 8600 5600
 F 0 "P6" H 8600 5700 50  0000 C CNN
@@ -227,7 +196,7 @@ NoConn ~ 7200 5300
 NoConn ~ 7200 5200
 NoConn ~ 7200 5100
 $Comp
-L R R5
+L window-contact-rfm69-rescue:R R5
 U 1 1 5B140CDD
 P 8500 4900
 F 0 "R5" V 8580 4900 50  0000 C CNN
@@ -238,7 +207,7 @@ F 3 "" H 8500 4900 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L R R4
+L window-contact-rfm69-rescue:R R4
 U 1 1 5B140D43
 P 6900 4800
 F 0 "R4" V 6980 4800 50  0000 C CNN
@@ -255,11 +224,7 @@ Wire Wire Line
 Wire Wire Line
 	8200 5000 8650 5000
 Wire Bus Line
-	4400 4550 6800 4550
-Wire Bus Line
 	6800 4550 6800 4350
-Wire Bus Line
-	6800 4350 8300 4350
 Wire Bus Line
 	8300 4350 8300 4400
 Entry Wire Line
@@ -274,8 +239,6 @@ Wire Wire Line
 	4400 4450 4400 4650
 Wire Wire Line
 	4400 4650 4200 4650
-Wire Wire Line
-	4500 4450 4500 4750
 Wire Wire Line
 	4500 4750 4200 4750
 Wire Wire Line
@@ -341,7 +304,7 @@ SCK
 Text Label 8950 4900 0    60   ~ 0
 MOSI
 $Comp
-L CONN_01X06 P4
+L window-contact-rfm69-rescue:CONN_01X06 P4
 U 1 1 5B19650E
 P 6300 3400
 F 0 "P4" H 6300 3750 50  0000 C CNN
@@ -392,7 +355,7 @@ SCK
 Text Label 6350 4250 1    60   ~ 0
 MOSI
 $Comp
-L CONN_01X01 P5
+L window-contact-rfm69-rescue:CONN_01X01 P5
 U 1 1 5B197BA2
 P 6350 6650
 F 0 "P5" H 6350 6750 50  0000 C CNN
@@ -403,7 +366,7 @@ F 3 "" H 6350 6650 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X01 P3
+L window-contact-rfm69-rescue:CONN_01X01 P3
 U 1 1 5B197C31
 P 5600 7050
 F 0 "P3" H 5600 7150 50  0000 C CNN
@@ -414,7 +377,7 @@ F 3 "" H 5600 7050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X01 P1
+L window-contact-rfm69-rescue:CONN_01X01 P1
 U 1 1 5B197CCB
 P 1800 2100
 F 0 "P1" H 1800 2200 50  0000 C CNN
@@ -429,7 +392,7 @@ VCC
 Wire Wire Line
 	1600 2100 1500 2100
 $Comp
-L R R3
+L window-contact-rfm69-rescue:R R3
 U 1 1 5B1981B6
 P 6000 6800
 F 0 "R3" V 6080 6800 50  0000 C CNN
@@ -450,7 +413,7 @@ Wire Wire Line
 Wire Wire Line
 	6000 7100 6000 6950
 Wire Wire Line
-	5700 6650 6150 6650
+	5700 6650 6000 6650
 Wire Wire Line
 	4200 5300 5700 5300
 Wire Wire Line
@@ -474,7 +437,7 @@ NoConn ~ 4200 6550
 NoConn ~ 4200 6650
 NoConn ~ 4200 6750
 $Comp
-L R R9
+L window-contact-rfm69-rescue:R R9
 U 1 1 5B891AA9
 P 6750 6500
 F 0 "R9" V 6830 6500 50  0000 C CNN
@@ -487,11 +450,11 @@ $EndComp
 Text GLabel 6750 6800 3    60   Input ~ 0
 GND
 Wire Wire Line
-	4200 6350 6950 6350
+	4200 6350 6750 6350
 Wire Wire Line
 	6750 6650 6750 6800
 $Comp
-L SW_Push SW1
+L Switch1:SW_Push SW1
 U 1 1 5B8920C1
 P 7150 6350
 F 0 "SW1" H 7200 6450 50  0000 L CNN
@@ -507,7 +470,7 @@ Wire Wire Line
 	7350 6350 7550 6350
 Connection ~ 6750 6350
 $Comp
-L R R8
+L window-contact-rfm69-rescue:R R8
 U 1 1 5B892B3A
 P 5450 4200
 F 0 "R8" V 5530 4200 50  0000 C CNN
@@ -522,7 +485,7 @@ GND
 Wire Wire Line
 	5450 3850 5450 4050
 $Comp
-L LED_Small D2
+L window-contact-rfm69-rescue:LED_Small D2
 U 1 1 5B892EF0
 P 5250 5000
 F 0 "D2" H 5200 5125 50  0000 L CNN
@@ -533,7 +496,7 @@ F 3 "" V 5250 5000 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L LED_Small D1
+L window-contact-rfm69-rescue:LED_Small D1
 U 1 1 5B8932F8
 P 4700 5150
 F 0 "D1" H 4650 5275 50  0000 L CNN
@@ -555,7 +518,7 @@ Wire Wire Line
 	5450 5150 4800 5150
 Connection ~ 5450 5000
 Wire Wire Line
-	5450 4350 5450 5150
+	5450 4350 5450 5000
 Wire Wire Line
 	5450 5000 5350 5000
 Wire Wire Line
@@ -571,7 +534,7 @@ Wire Wire Line
 Wire Wire Line
 	4750 6100 4400 6100
 $Comp
-L CONN_01X02 P2
+L window-contact-rfm69-rescue:CONN_01X02 P2
 U 1 1 5B19964F
 P 4950 6150
 F 0 "P2" H 4950 6300 50  0000 C CNN
@@ -584,7 +547,7 @@ $EndComp
 Text GLabel 4600 7500 3    60   Input ~ 0
 GND
 $Comp
-L R R7
+L window-contact-rfm69-rescue:R R7
 U 1 1 5B91A3F9
 P 4600 7200
 F 0 "R7" V 4680 7200 50  0000 C CNN
@@ -595,7 +558,7 @@ F 3 "" H 4600 7200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X01 P7
+L window-contact-rfm69-rescue:CONN_01X01 P7
 U 1 1 5B91A4BB
 P 4900 7000
 F 0 "P7" H 4900 7100 50  0000 C CNN
@@ -610,10 +573,42 @@ Wire Wire Line
 Wire Wire Line
 	4450 5500 4450 7000
 Wire Wire Line
-	4450 7000 4700 7000
+	4450 7000 4600 7000
 Wire Wire Line
 	4600 7000 4600 7050
 Connection ~ 4600 7000
 Wire Wire Line
 	4600 7350 4600 7500
+Wire Wire Line
+	1650 1500 1900 1500
+Wire Wire Line
+	1650 1200 1900 1200
+Wire Wire Line
+	2000 4500 2300 4500
+Wire Wire Line
+	2300 4500 2300 4550
+Wire Wire Line
+	2000 6650 2000 6750
+Wire Wire Line
+	2000 6750 2000 6900
+Wire Wire Line
+	2100 5000 2300 5000
+Wire Wire Line
+	2200 6550 2300 6550
+Wire Wire Line
+	4500 5900 4200 5900
+Wire Wire Line
+	6000 6650 6150 6650
+Wire Wire Line
+	6750 6350 6950 6350
+Wire Wire Line
+	5450 5000 5450 5150
+Wire Wire Line
+	4600 7000 4700 7000
+Wire Wire Line
+	4500 4450 4500 4750
+Wire Bus Line
+	6800 4350 8300 4350
+Wire Bus Line
+	4400 4550 6800 4550
 $EndSCHEMATC

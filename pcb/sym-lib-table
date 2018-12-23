@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name window-contact-rfm69-rescue)(type Legacy)(uri ${KIPRJMOD}/window-contact-rfm69-rescue.lib)(options "")(descr ""))
+  (lib (name rfm69)(type Legacy)(uri /home/jonas/entwicklung/kicad-libraries/rfm69.lib)(options "")(descr ""))
+  (lib (name Switch1)(type Legacy)(uri /home/jonas/kicad-symbols/Switch.lib)(options "")(descr ""))
+)
