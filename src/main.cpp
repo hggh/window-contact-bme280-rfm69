@@ -52,10 +52,10 @@ short get_window_status() {
   int reed_status_2 = digitalRead(REED_CONTACT_2);
 
 #ifdef DEBUG
-    Serial.print("Reed Status 1: ");
-    Serial.println(reed_status_1);
-    Serial.print("Reed Status 2: ");
-    Serial.println(reed_status_2);
+  Serial.print("Reed Status 1: ");
+  Serial.println(reed_status_1);
+  Serial.print("Reed Status 2: ");
+  Serial.println(reed_status_2);
 #endif
 
   if (reed_status_1 == LOW and reed_status_2 == LOW) {
@@ -86,9 +86,9 @@ float read_battery_volatage() {
   float battery_voltage = InternalReferenceVoltage / float (ADC + 0.5) * 1024.0;
 
 #ifdef DEBUG
-    Serial.print("Voltage = ");
-    Serial.println(battery_voltage);
-    Serial.flush();
+  Serial.print("Voltage = ");
+  Serial.println(battery_voltage);
+  Serial.flush();
 #endif
   ADCSRA &= ~(1 << 7);
   power_adc_disable();
@@ -127,8 +127,8 @@ void send_status(short status) {
   //radio.sleep();
 
 #ifdef DEBUG
-    Serial.println(buffer);
-    Serial.flush();
+  Serial.println(buffer);
+  Serial.flush();
 #endif
 }
 
@@ -148,11 +148,11 @@ void led_d2(uint8_t a) {
 
 void setup() {
 #ifdef DEBUG
-    Serial.begin(9600);
-    Serial.println("Starting window-contact-rfm69");
-    Serial.flush();
+  Serial.begin(9600);
+  Serial.println("Starting window-contact-rfm69");
+  Serial.flush();
 #else
-    power_usart0_disable();
+  power_usart0_disable();
 #endif
   ADCSRA_status = ADCSRA;
   ADCSRA &= ~(1 << 7);
@@ -207,7 +207,8 @@ void loop() {
       _delay_ms(300);
       led_d1(0);
 
-      action_status = ACTION_STATUS_READ;
+      // configure mode is now switched off go back to sleep
+      action_status = ACTION_STATUS_SLEEP;
     }
 #ifdef DEBUG
     Serial.print("configure mode: ");
