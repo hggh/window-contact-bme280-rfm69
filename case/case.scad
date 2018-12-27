@@ -38,23 +38,21 @@ translate([40, 80, 0]) {
             // Rundung oben
             translate([HOEHE, BREITE / 2, 0]) {
                 difference() {
-                    cylinder($fn=80, r=BREITE / 2 , h=3.5);
+                    cylinder($fn=120, r=BREITE / 2 , h=3.5);
                      translate([-BREITE, - BREITE / 2,0]) cube([BREITE, BREITE, 10]);
                     cylinder($fn=80, r=BREITE / 3.6 , h=1.5);
                 }
             }
-
             translate([-40, -1.5, 0]) {
                 difference() {
                     cube([40, 43, 6]);
                     translate([1, 1.5, 1]) {
                         cube([38, 40, 10]);
                     }
-                    translate([20, 21.5, 0]) {
-                        cylinder($fn=80, r=18, h=2, center=true);
-                    }
-                }
-			
+                    translate([3, 2.5, 0]) {
+                        cube([30, 38, 5]);
+                     }
+                }		
             }
         }
         translate([-4, 4, 0]) {
@@ -63,7 +61,11 @@ translate([40, 80, 0]) {
         translate([-4, 32, 0]) {
             cube([26, 4, 2.7]);
         }
+        translate([-10, BREITE/ 4, 0]) {
+            cube([12, 20, 2]);
+        }
     }
+    
 }
 
 
