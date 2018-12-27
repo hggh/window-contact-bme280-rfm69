@@ -1,9 +1,7 @@
 VIERKANT = 7.5;
 BREITE = 40;
 HOEHE = 68;
-BOHRUNGEN = 11;
-
-
+BOHRUNGEN = 10.75;
 
 module box() {
     difference() {
@@ -33,11 +31,19 @@ module box() {
 }
 
 
-// neue Box
 translate([40, 80, 0]) {
     difference() {
         union() {
             box();
+            // Rundung oben
+            translate([HOEHE, BREITE / 2, 0]) {
+                difference() {
+                    cylinder($fn=80, r=BREITE / 2 , h=3.5);
+                     translate([-BREITE, - BREITE / 2,0]) cube([BREITE, BREITE, 10]);
+                    cylinder($fn=80, r=BREITE / 3.6 , h=1.5);
+                }
+            }
+
             translate([-40, -1.5, 0]) {
                 difference() {
                     cube([40, 43, 6]);
@@ -61,8 +67,7 @@ translate([40, 80, 0]) {
 }
 
 
-// Deckel innen
-translate([120, 120, 0]) {
+translate([60, 0, 0]) {
     difference() {
         cube([26, 32, 0.8]);
         translate([13, 16, 0 ]) {
@@ -72,11 +77,10 @@ translate([120, 120, 0]) {
 }
 
 
-// Vierkant
-translate([0, 140, 0]) {
+translate([0, 0, 0]) {
     difference(){
         union() {
-            cylinder($fn=40, h=2, r=8);
+            cylinder($fn=40, h=1.8, r=8);
             translate([-23 /2, -1.5 , (2 - 0.8) / 2]) {
                 cube([23, 3, 0.8]);
             }
@@ -84,7 +88,6 @@ translate([0, 140, 0]) {
                 rotate([0, 0, 90]) cube([23, 3, 0.8]);
             }
         }
-        cube([(VIERKANT + 0.5), (VIERKANT + 0.5), 10], center=true);
+        cube([VIERKANT, VIERKANT, 10], center=true);
     }
 }
-
