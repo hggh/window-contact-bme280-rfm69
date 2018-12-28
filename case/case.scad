@@ -31,7 +31,7 @@ module box() {
 }
 
 
-translate([40, 80, 0]) {
+translate([40, 60, 0]) {
     difference() {
         union() {
             box();
@@ -82,7 +82,7 @@ translate([60, 0, 0]) {
 }
 
 
-translate([0, 0, 0]) {
+translate([0, 10, 0]) {
     difference(){
         union() {
             cylinder($fn=40, h=1.8, r=8);
