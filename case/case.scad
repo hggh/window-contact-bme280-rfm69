@@ -51,8 +51,11 @@ translate([40, 80, 0]) {
                     }
                     translate([3, 2.5, 0]) {
                         cube([30, 38, 5]);
-                     }
-                }		
+                    }
+                    translate([40/2 +1 , -10, 2]) {
+                        rotate([0, 0, 90]) cube([60, 2, 2]);
+                    }
+                }
             }
         }
         translate([-4, 4, 0]) {
