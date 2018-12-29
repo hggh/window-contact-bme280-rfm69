@@ -3,6 +3,7 @@
 #include <RFM69.h>
 #include <Bounce2.h>
 #include <JeeLib.h>
+#include <Voltage.h>
 
 #include "config.h"
 
@@ -29,11 +30,25 @@
 
 Bounce push_button = Bounce();
 RFM69 radio;
-byte ADCSRA_status;
-const float InternalReferenceVoltage = 1.1;
+Voltage voltage;
 volatile short window_status = WINDOW_STATUS_UNDEFINED;
 volatile short action_status = ACTION_STATUS_SLEEP;
 volatile short button_status = BUTTON_MODE_NO_CONFIGURE;
+volatile unsigned long window_weakup_time = 0;
+
+/*
+ * arduino does not map the crystal pin to digital pin mapping
+ * LEDs are connected to PB6/PB7
+ */
+void led_d1(uint8_t a) {
+  // GREEN LED
+  PORTB = (a<<PORTB7);
+}
+
+void led_d2(uint8_t a) {
+  // RED LED
+  PORTB = (a<<PORTB6);
+}
 
 ISR(WDT_vect) {
   Sleepy::watchdogEvent();
@@ -41,6 +56,7 @@ ISR(WDT_vect) {
 
 ISR(PCINT1_vect) {
   action_status = ACTION_STATUS_READ;
+  window_weakup_time = millis();
 }
 
 void button_pressed() {
@@ -73,28 +89,6 @@ short get_window_status() {
   return WINDOW_STATUS_UNDEFINED;
 }
 
-float read_battery_volatage() {
-  power_adc_enable();
-  ADCSRA = ADCSRA_status;
-  ADCSRA |= bit (ADPS0) |  bit (ADPS1) | bit (ADPS2);  // Prescaler of 128
-  ADMUX = bit (REFS0) | bit (MUX3) | bit (MUX2) | bit (MUX1);
-
-  delay(10);
-  bitSet (ADCSRA, ADSC);
-  while (bit_is_set(ADCSRA, ADSC)) {
-  }
-  float battery_voltage = InternalReferenceVoltage / float (ADC + 0.5) * 1024.0;
-
-#ifdef DEBUG
-  Serial.print("Voltage = ");
-  Serial.println(battery_voltage);
-  Serial.flush();
-#endif
-  ADCSRA &= ~(1 << 7);
-  power_adc_disable();
-  return battery_voltage;
-}
-
 void setup_pin_change_interrupt() {
   noInterrupts();
   PCICR |= (1 << PCIE1);
@@ -117,14 +111,18 @@ void disable_pin_change_interrupt() {
 
 void send_status(short status) {
   char buffer[30] = "";
-  double volt = (double)read_battery_volatage();
+  double volt = (double)voltage.read();
 
   char volt_str[10];
   dtostrf(volt, 3,2, volt_str);
 
   sprintf(buffer, "%d;WinStatus;%d;%s", NODEID, status, volt_str);
-  //radio.sendWithRetry(GATEWAYID, buffer, strlen(buffer), 6);
-  //radio.sleep();
+  if (radio.sendWithRetry(GATEWAYID, buffer, strlen(buffer), 6, 60) == false) {
+    led_d2(1);
+    _delay_ms(100);
+    led_d2(0);
+  }
+  radio.sleep();
 
 #ifdef DEBUG
   Serial.println(buffer);
@@ -132,19 +130,6 @@ void send_status(short status) {
 #endif
 }
 
-/*
- * arduino does not map the crystal pin to digital pin mapping
- * LEDs are connected to PB6/PB7
- */
-void led_d1(uint8_t a) {
-  // GREEN LED
-  PORTB = (a<<PORTB7);
-}
-
-void led_d2(uint8_t a) {
-  // RED LED
-  PORTB = (a<<PORTB6);
-}
 
 void setup() {
 #ifdef DEBUG
@@ -154,10 +139,9 @@ void setup() {
 #else
   power_usart0_disable();
 #endif
-  ADCSRA_status = ADCSRA;
-  ADCSRA &= ~(1 << 7);
-  power_adc_disable();
   power_twi_disable();
+
+  voltage.init();
 
   pinMode(REED_CONTACT_1, INPUT);
   pinMode(REED_CONTACT_2, INPUT);
@@ -169,11 +153,10 @@ void setup() {
 
   // LED Pins to output
   DDRB = (1<<DDB7) | (1<<DDB6);
-/*
+
   radio.initialize(FREQUENCY, NODEID, NETWORKID);
   radio.encrypt(ENCRYPTKEY);
   radio.sleep();
-*/
 
   window_status = get_window_status();
   send_status(window_status);
@@ -225,17 +208,17 @@ void loop() {
 
   
   if (action_status == ACTION_STATUS_READ) {
-    disable_pin_change_interrupt();
+    if (millis() > window_weakup_time + 750) {
 
-    Sleepy::loseSomeTime(1500);
+      window_status = get_window_status();
+      send_status(window_status);
 
-    window_status = get_window_status();
-    send_status(window_status);
-
-    action_status = ACTION_STATUS_SLEEP;
+      action_status = ACTION_STATUS_SLEEP;
+    }
+    else {
+      Sleepy::loseSomeTime(10);
+    }
   }
-
-
 
   
   if (action_status == ACTION_STATUS_SLEEP) {
