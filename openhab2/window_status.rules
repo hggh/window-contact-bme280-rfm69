@@ -4,10 +4,12 @@ when
 then
 	var status = transform("REGEX", "^(\\d*);.*", Window_Contact_1_String.state.toString)
 
-	var voltage = transform("REGEX", "^\\d*;(\\d*.\\d*).*", Window_Contact_1_String.state.toString)
+	var voltage_str = transform("REGEX", "^\\d*;(\\d*.\\d*).*", Window_Contact_1_String.state.toString)
+	var QuantityType<ElectricPotential> voltage = new QuantityType(voltage_str + "V")
 
 	Window_Contact_1_Status.postUpdate(status)
 	Window_Contact_1_Battery.postUpdate(voltage)
 
 	Window_Contact_1_LastUpdate.postUpdate(new DateTimeType())
+
 end
