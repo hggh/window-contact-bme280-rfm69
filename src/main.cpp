@@ -10,10 +10,10 @@
 // push switch
 #define PUSH_SWITCH_PIN 3
 
-// reed contact 1 = RE1/P3 = window fully open
+// reed contact 1 = RE1/P3 = right contact
 #define REED_CONTACT_1 A1
 
-// reed contact 2 = RE2/P5 = window half open
+// reed contact 2 = RE2/P5 = left contact
 #define REED_CONTACT_2 A0
 
 #define WINDOW_STATUS_UNDEFINED 0
@@ -74,17 +74,30 @@ short get_window_status() {
   Serial.println(reed_status_2);
 #endif
 
-  if (reed_status_1 == LOW and reed_status_2 == LOW) {
-    return WINDOW_STATUS_CLOSED;
+  if (WINDOW_ORIENTATION == 1) {
+    if (reed_status_1 == LOW and reed_status_2 == HIGH) {
+      return WINDOW_STATUS_CLOSED;
+    }
+    if (reed_status_1 == LOW and reed_status_2 == LOW) {
+      return WINDOW_STATUS_OPENED;
+    }
+    if (reed_status_1 == HIGH and reed_status_2 == LOW) {
+      return WINDOW_STATUS_HALF_OPEN;
+    }
   }
 
-  if (reed_status_1 == HIGH and reed_status_2 == LOW) {
-    return WINDOW_STATUS_OPENED;
+  if (WINDOW_ORIENTATION == 2) {
+    if (reed_status_1 == HIGH and reed_status_2 == LOW) {
+      return WINDOW_STATUS_CLOSED;
+    }
+    if (reed_status_1 == LOW and reed_status_2 == LOW) {
+      return WINDOW_STATUS_OPENED;
+    }
+    if (reed_status_1 == LOW and reed_status_2 == HIGH) {
+      return WINDOW_STATUS_HALF_OPEN;
+    }
   }
-
-  if (reed_status_1 == LOW and reed_status_2 == HIGH) {
-    return WINDOW_STATUS_HALF_OPEN;
-  }
+ 
 
   return WINDOW_STATUS_UNDEFINED;
 }
