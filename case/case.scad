@@ -96,3 +96,36 @@ translate([0, 10, 0]) {
         cube([VIERKANT, VIERKANT, 10], center=true);
     }
 }
+
+
+
+module deckel() {
+    D_BREITE = 40;
+    D_HOEHE = 43;
+    D_TIEFE = 11;
+
+    union() {
+        difference() {
+            cube([D_BREITE + 2.8, D_HOEHE  + 2.8,  D_TIEFE + 1.5]);
+            translate([1.2, 1.2, 0]) {
+                cube([D_BREITE + 0.4, D_HOEHE + 0.4,  D_TIEFE]);
+            }
+            translate([-1, 1.5 + 1.2, 0]) {
+                cube([4, 40 +0.4, 3.5]);
+            }
+        }
+        difference() {
+            translate([40/2 + 1.2 +1 , 0, 2]) {
+                rotate([0, 0, 90]) cube([D_HOEHE + 2.4,, 2, 2]);
+            }
+            translate([1.2, 1.2 +2, 0]) {
+                cube([D_BREITE, D_HOEHE-4,  D_TIEFE +1]);
+            }
+        }
+    }
+}
+
+
+translate([60, 120, 0 ]) {
+    deckel();
+}
