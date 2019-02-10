@@ -135,6 +135,11 @@ void send_status(short status) {
     _delay_ms(100);
     led_d2(0);
   }
+  else {
+    led_d1(1);
+    _delay_ms(100);
+    led_d1(0);
+  }
   radio.sleep();
 
 #ifdef DEBUG
