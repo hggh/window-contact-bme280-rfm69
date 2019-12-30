@@ -7,8 +7,8 @@ module inlay() {
 	difference(){
 		cylinder($fn=40, h=4, r=((32/2) - 6.5));
 		cube([(VIERKANT + 0.5), (VIERKANT + 0.5), 10], center=true);
-		translate([(((32/2)-6)- 2.5), 0, 0]) {
-			cube([2.5, 4.5, 10], center=true);
+		translate([(((32/2)-6)- 3.3), 0, 0]) {
+			cube([4, 4.5, 10], center=true);
 		}
 	}
 }
@@ -30,11 +30,11 @@ module box() {
 		}
         //Reed Contact
         translate([ (HOEHE-43)/2, (BREITE - 2.2 - 3), -1]) {
-			cube([15, 4, 4]);
+            cube([30, 3, 3.3]);
 		}
         //Reed Contact
-        translate([ (HOEHE-43)/2, 1.2, -1]) {
-			cube([15, 4, 4]);
+        translate([ (HOEHE-43)/2, 2.2, -1]) {
+			cube([30, 3, 3.3]);
 		}
     }
 }
@@ -49,7 +49,7 @@ translate([40, 60, 0]) {
                 difference() {
                     cylinder($fn=120, r=BREITE / 2 , h=3.5);
                     translate([-BREITE, - BREITE / 2,-1]) cube([BREITE, BREITE, 10]);
-                    translate([0, 0, -1]) cylinder($fn=80, r=BREITE / 2.6 , h=2.5);
+                    translate([0, 0, -1]) cylinder($fn=80, r=BREITE / 2.4 , h=3);
                 }
             }
             translate([-40, -3, 0]) {
@@ -68,19 +68,10 @@ translate([40, 60, 0]) {
             }
         }
         translate([-4, 4, -1]) {
-            cube([26, 4, 3.7]);
+            cube([75, 5, 3.7]);
         }
-        translate([-4, 32, -1]) {
-            cube([26, 4, 3.7]);
-        }
-       
-        // links kabelkanal / antenne
-        translate([-4, 3, -1]) {
-            cube([76, 3, 2.8]);
-        }
-        // rechts kabelkanal / antenne
-        translate([-4, BREITE-6, -1]) {
-            cube([76, 3, 2.8]);
+        translate([-4, 31, -1]) {
+            cube([75, 5, 3.7]);
         }
     }
     
