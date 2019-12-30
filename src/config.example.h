@@ -6,7 +6,7 @@
 #define DEBUG 1
 
 /*
- * 1 = handle is left RE2 has to contact if window/door is closed"
+ * 1 = handle is left
  * 2 = handle is right
 */
 #define WINDOW_ORIENTATION 1

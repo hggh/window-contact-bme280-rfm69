@@ -10,10 +10,10 @@
 // push switch
 #define PUSH_SWITCH_PIN 3
 
-// reed contact 1 = RE1/P3 = right contact
+// reed contact 1 = RE1/P3 = left contact
 #define REED_CONTACT_1 A1
 
-// reed contact 2 = RE2/P5 = left contact
+// reed contact 2 = RE2/P5 = right contact
 #define REED_CONTACT_2 A0
 
 #define WINDOW_STATUS_UNDEFINED 0
@@ -42,12 +42,20 @@ volatile unsigned long window_weakup_time = 0;
  */
 void led_d1(uint8_t a) {
   // GREEN LED
-  PORTB = (a<<PORTB7);
+  if (a) {
+    PORTB |= (1 << PB7);
+    return;
+  }
+  PORTB &= ~(1 << PB7);
 }
 
 void led_d2(uint8_t a) {
   // RED LED
-  PORTB = (a<<PORTB6);
+  if (a) {
+    PORTB |= (1 << PB6);
+    return;
+  }
+  PORTB &= ~(1 << PB6);
 }
 
 ISR(WDT_vect) {
@@ -87,13 +95,13 @@ short get_window_status() {
   }
 
   if (WINDOW_ORIENTATION == 2) {
-    if (reed_status_1 == HIGH and reed_status_2 == LOW) {
+    if (reed_status_1 == LOW and reed_status_2 == HIGH) {
       return WINDOW_STATUS_CLOSED;
     }
     if (reed_status_1 == LOW and reed_status_2 == LOW) {
       return WINDOW_STATUS_OPENED;
     }
-    if (reed_status_1 == LOW and reed_status_2 == HIGH) {
+    if (reed_status_1 == HIGH and reed_status_2 == LOW) {
       return WINDOW_STATUS_HALF_OPEN;
     }
   }
@@ -130,14 +138,15 @@ void send_status(short status) {
   dtostrf(volt, 3,2, volt_str);
 
   sprintf(buffer, "%d;WinStatus;%d;%s", NODEID, status, volt_str);
-  if (radio.sendWithRetry(GATEWAYID, buffer, strlen(buffer), 6, 60) == false) {
+
+  if (radio.sendWithRetry(GATEWAYID, buffer, strlen(buffer), 4, 120) == false) {
     led_d2(1);
-    _delay_ms(100);
+    delay(50);
     led_d2(0);
   }
   else {
     led_d1(1);
-    _delay_ms(100);
+    delay(50);
     led_d1(0);
   }
   radio.sleep();
@@ -170,7 +179,8 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(PUSH_SWITCH_PIN), button_pressed, CHANGE);
 
   // LED Pins to output
-  DDRB = (1<<DDB7) | (1<<DDB6);
+  DDRB |= (1<<PB6);
+  DDRB |= (1<<PB7);
 
   radio.initialize(FREQUENCY, NODEID, NETWORKID);
   radio.encrypt(ENCRYPTKEY);
@@ -190,6 +200,7 @@ void loop() {
     if (button_status == BUTTON_MODE_NO_CONFIGURE) {
       // we are in NO CONIFGURE mode, now switch to configuration mode
       button_status = BUTTON_MODE_CONFIGURE;
+      disable_pin_change_interrupt();
       led_d1(1);
       _delay_ms(300);
       led_d1(0);
@@ -224,6 +235,18 @@ void loop() {
     interrupts();
   }
 
+  if (button_status == BUTTON_MODE_CONFIGURE) {
+    // light up LEDs for debugging
+    int reed_status_1 = digitalRead(REED_CONTACT_1);
+    int reed_status_2 = digitalRead(REED_CONTACT_2);
+
+    // reed contact 1 = RE1/P3 = right contact = RED light
+    led_d2(reed_status_1);
+
+    // reed contact 2 = RE2/P5 = left contact = GREEN light
+    led_d1(reed_status_2);
+
+  }
   
   if (action_status == ACTION_STATUS_READ) {
     if (millis() > window_weakup_time + 750) {
