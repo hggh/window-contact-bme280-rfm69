@@ -52,13 +52,13 @@ translate([40, 60, 0]) {
                     translate([0, 0, -1]) cylinder($fn=80, r=BREITE / 2.4 , h=3);
                 }
             }
-            translate([-40, -3, 0]) {
+            translate([-41, -3, 0]) {
                 difference() {
-                    cube([40, 46, 6]);
+                    cube([42, 46, 6]);
                     translate([1, 1.5, 1]) {
                         cube([38, 43, 10]);
                     }
-                    translate([3, 2, -1]) {
+                    translate([2, 2, -1]) {
                         cube([36, 42, 5]);
                     }
                     translate([40/2 +1 , -10, 2]) {
